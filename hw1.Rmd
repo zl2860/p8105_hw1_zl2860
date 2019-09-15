@@ -1,0 +1,60 @@
+---
+title: "hw_1_zl2860"
+author: "Zongchao Liu"
+date: "9/15/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Problem 1 
+
+```{r}
+df_1 <- tibble(
+  random_sample = rnorm(8),
+  vec_logical = random_sample > 0, 
+  vec_character = as.character(c("a","a","a","a","a","a","a","a")),
+  vec_factor = factor(c("good","bad","medium","good","bad","medium","bad","medium"),levels = c("good","medium","bad"))
+)
+levels(pull(df_1,vec_factor))
+
+mean(pull(df_1,random_sample))
+mean(pull(df_1,vec_logical))
+#mean(pull(df_1,vec_factor)) # dosen't work
+#mean(pull(df_1,vec_factor)) #'doesn't work
+as.numeric(pull(df_1,vec_logical))
+as.numeric(pull(df_1,vec_character)) # returning NAs
+as.numeric(pull(df_1,vec_factor))
+```
+
+```{r,echo=FALSE}
+result1 =  as.numeric(pull(df_1,vec_logical)) * pull(df_1,random_sample)
+#result2 = as.factor(pull(df_1,vec_logical)) * pull(df_1,random_sample)
+result3 = as.numeric(as.factor(pull(df_1,vec_logical))) * pull(df_1,random_sample)
+
+```
+
+```{r}
+set.seed(886)
+df_2 <- tibble(
+  x = rnorm(500), #
+  y = rnorm(500), #
+  log_vec = x+y >1, #
+  num_vec = as.numeric(log_vec),
+  factor_vec = as.factor(log_vec)
+)
+
+```
+the size of the data is (`r nrow(df_2) ` ,`r ncol(df_2)`). The mean of x is `r mean(pull(df_2,x)) `. The median of x is `r median(pull(df_2,x))`. The standard deviation of x is `r sd(pull(df_2,x)) ` The proportion of x is `r length(which(pull(df_2,log_vec)))/length(pull(df_2,log_vec))` 
+
+```{r}
+ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point()
+ggsave("colored_by_logical_variables.pdf")
+ggplot(df_2, aes(x = x, y = y, color = num_vec ))+geom_point()
+ggplot(df_2, aes(x = x, y = y, color = factor_vec ))+geom_point()
+
+
+``` 
