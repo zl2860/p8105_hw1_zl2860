@@ -3,6 +3,7 @@ title: "hw_1_zl2860"
 author: "Zongchao Liu"
 date: "9/15/2019"
 output: html_document
+
 ---
 
 ```{r setup, include=FALSE}
@@ -10,51 +11,75 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-## Problem 1 
+## Problem 0.1 
 
 ```{r}
+#----------STEP 1: Create a dataframe
+set.seed(886) # set.seed() to ensure the reproductivity
 df_1 <- tibble(
-  random_sample = rnorm(8),
-  vec_logical = random_sample > 0, 
-  vec_character = as.character(c("a","a","a","a","a","a","a","a")),
+  random_sample = rnorm(8), # create a random sample of size 8 from a standard Normal distribution
+  vec_logical = random_sample > 0, # create a logical vector indicating whether elements of the sample are greater than 0
+  vec_character = as.character(c("a","a","a","a","a","a","a","a")), # create a character vector of length 8
   vec_factor = factor(c("good","bad","medium","good","bad","medium","bad","medium"),levels = c("good","medium","bad"))
-)
-levels(pull(df_1,vec_factor))
+) #create a factor vector of length 8, with 3 different factor ???levels???
+levels(pull(df_1,vec_factor)) #see the levels of the created factor vector
 
-mean(pull(df_1,random_sample))
-mean(pull(df_1,vec_logical))
-#mean(pull(df_1,vec_factor)) # dosen't work
-#mean(pull(df_1,vec_factor)) #'doesn't work
-as.numeric(pull(df_1,vec_logical))
-as.numeric(pull(df_1,vec_character)) # returning NAs
-as.numeric(pull(df_1,vec_factor))
-```
 
-```{r,echo=FALSE}
-result1 =  as.numeric(pull(df_1,vec_logical)) * pull(df_1,random_sample)
-#result2 = as.factor(pull(df_1,vec_logical)) * pull(df_1,random_sample)
-result3 = as.numeric(as.factor(pull(df_1,vec_logical))) * pull(df_1,random_sample)
+
 
 ```
 
+
+```{r}
+#----------STEP 2: Take the mean of each variable in the dataframe
+mean(pull(df_1,random_sample)) # return numeric values
+mean(pull(df_1,vec_logical)) # return numeric values
+mean(pull(df_1,vec_factor)) # return NAs
+mean(pull(df_1,vec_factor)) # return NAs
+```
+What works and what doesn???t?
+
+
+```{r, eval = FALSE}
+#----------STEP 3: Convert dtype & Multiplication
+#STEP 3.1:  Convert dtype
+as.numeric(pull(df_1,vec_logical)) # return numeric values
+as.numeric(pull(df_1,vec_character)) # return NAs
+as.numeric(pull(df_1,vec_factor)) # return numeric values
+```
+What happens, and why? Does this help explain what happens when you try to take the mean?
+
+```{r,eval = FALSE}
+#STEP 3.2: Convert dtype & Multiplication
+result1 =  as.numeric(pull(df_1,vec_logical)) * pull(df_1,random_sample) # convert the logical vector to numeric, and multiply the random sample by the result
+result2 = as.factor(pull(df_1,vec_logical)) * pull(df_1,random_sample) # convert the logical vector to a factor, and multiply the random sample by the result
+result3 = as.numeric(as.factor(pull(df_1,vec_logical))) * pull(df_1,random_sample) # convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
+
+```
+
+## Promblem 2 
+## Create a new dataframe & Write a short description of the vectors using inline R code
 ```{r}
 set.seed(886)
+#Create a data frame 
 df_2 <- tibble(
-  x = rnorm(500), #
-  y = rnorm(500), #
-  log_vec = x+y >1, #
-  num_vec = as.numeric(log_vec),
-  factor_vec = as.factor(log_vec)
+  x = rnorm(500), # x: a random sample of size 500 from a standard Normal distribution
+  y = rnorm(500), # y: a random sample of size 500 from a standard Normal distribution
+  log_vec = x+y >1, # A logical vector indicating whether x + y > 1
+  num_vec = as.numeric(log_vec),# A numeric vector created by coercing the above logical vector
+  factor_vec = as.factor(log_vec)# A factor vector created by coercing the above logical vector
 )
 
 ```
-the size of the data is (`r nrow(df_2) ` ,`r ncol(df_2)`). The mean of x is `r mean(pull(df_2,x)) `. The median of x is `r median(pull(df_2,x))`. The standard deviation of x is `r sd(pull(df_2,x)) ` The proportion of x is `r length(which(pull(df_2,log_vec)))/length(pull(df_2,log_vec))` 
+The size of the data is (`r nrow(df_2) ` ,`r ncol(df_2)`). The mean of x is `r mean(pull(df_2,x)) `. The median of x is `r median(pull(df_2,x))`. The standard deviation of x is `r sd(pull(df_2,x)) `.The proportion of x is `r length(which(pull(df_2,log_vec)))/length(pull(df_2,log_vec))` 
 
+## Promblem 2 
+## Make scatterplots
 ```{r}
-ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point()
-ggsave("colored_by_logical_variables.pdf")
-ggplot(df_2, aes(x = x, y = y, color = num_vec ))+geom_point()
-ggplot(df_2, aes(x = x, y = y, color = factor_vec ))+geom_point()
-
+ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point() # a scatterplot of y vs x; color points using the logical variable
+ggsave("colored_by_logical_variables.pdf") #expoert the image
+ggplot(df_2, aes(x = x, y = y, color = num_vec ))+geom_point() 
+ggplot(df_2, aes(x = x, y = y, color = factor_vec ))+geom_point() # a second and third scatterplot that color points using the numeric and factor variables, respectively
 
 ``` 
+Explanation
