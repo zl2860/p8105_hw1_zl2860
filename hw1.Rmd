@@ -43,11 +43,11 @@ mean(pull(df_1,vec_factor)) # return NAs
 
 The function mean() works on the columns with values that can be treated as numeric ones(['random_sample'] and ['vec_logical']) but doesn't work on the vector of characters or factors(['vec_character'],['vec_factor']).
 
-## STEP 3: Convert dtype & Multiplication
+## STEP 3.1: Convert data type
 
 ```{r, eval = FALSE }
-#----------STEP 3: Convert & Multiplication
-#STEP 3.1:  Convert dtype
+#----------STEP 3: Convert data type & Multiplication
+#STEP 3.1:  Convert data type
 as.numeric(pull(df_1,vec_logical)) # return numeric values
 as.numeric(pull(df_1,vec_character)) # return NAs
 as.numeric(pull(df_1,vec_factor)) # return numeric values
@@ -84,12 +84,11 @@ df_2 <- tibble(
 ```
 The size of the data is (`r nrow(df_2) ` ,`r ncol(df_2)`). The mean of x is `r mean(pull(df_2,x)) `. The median of x is `r median(pull(df_2,x))`. The standard deviation of x is `r sd(pull(df_2,x)) `. The proportion of x is `r length(which(pull(df_2,log_vec)))/length(pull(df_2,log_vec))` 
 
-# Promblem 2 
 ## Make scatterplots
 
 ```{r}
 ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point()+
-  labs(x="x",y="y", title = "scatter plot colored by logical variables")+
+  labs(x="x",y="y", title = "Scatter Plot Colored by Logical Variables")+
   theme_light()+
   theme(plot.title = element_text(hjust = 0.5))
   # a scatterplot of y vs x; color points using the logical variable
@@ -97,12 +96,12 @@ ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point()+
 ggsave("colored_by_logical_variables.pdf") #expoert the image
 
 ggplot(df_2, aes(x = x, y = y, color = num_vec ))+geom_point()+
-  labs(x="x",y="y", title = "scatter plot colored by numeric variables")+
+  labs(x="x",y="y", title = "Scatter Plot Colored by Numeric Variables")+
   theme_light()+
   theme(plot.title = element_text(hjust = 0.5))
 
 ggplot(df_2, aes(x = x, y = y, color = factor_vec ))+geom_point()+
-  labs(x="x",y="y", title = "scatter plot colored by factor variables")+
+  labs(x="x",y="y", title = "Scatter Plot Colored by Factor Variables")+
   theme_light()+
   theme(plot.title = element_text(hjust = 0.5)) # a second and third scatterplot that color points using the numeric and factor variables, respectively
 
