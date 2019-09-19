@@ -29,10 +29,6 @@ df_1 <- tibble(
 ) #create a factor vector of length 8, with 3 different factor levels
 
 levels(pull(df_1,vec_factor)) #see the levels of the created factor vector
-
-
-
-
 ```
 
 ## STEP 2: Take the mean of each variable in the dataframe
@@ -61,10 +57,10 @@ The vectors of logical values and factors can be converted to vectors of numeric
 
 In fact, vectors of characters can be converted to numeric values only when the characters are all numbers. However, converting number characters to numeric values runs the risk of missing information if the original characters have many decimal places. 
 
-## STEP 3.2: Convert dtype & Multiplication
+## STEP 3.2: Convert data type & Multiplication
 
 ```{r}
-#STEP 3.2: Convert dtype & Multiplication
+#STEP 3.2: Convert data type & Multiplication
 result1 =  as.numeric(pull(df_1,vec_logical)) * pull(df_1,random_sample) # convert the logical vector to numeric, and multiply the random sample by the result
 result2 = as.factor(pull(df_1,vec_logical)) * pull(df_1,random_sample) # convert the logical vector to a factor, and multiply the random sample by the result
 result3 = as.numeric(as.factor(pull(df_1,vec_logical))) * pull(df_1,random_sample) # convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result

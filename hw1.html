@@ -1554,9 +1554,9 @@ as.numeric(pull(df_1,vec_factor)) # return numeric values</code></pre>
 <p>The vectors of logical values and factors can be converted to vectors of numeric values. In R, logical values are mathematically corresponding to the number 0 and 1(TRUE = 1 , FALSE =0). However, this does not mean TRUE is greater than FALSE. Similarly, levels of factors are mathematically corresponding to the number 1,2,3…n. Before calculation, R will try to ensure the values are numeric. When we perform calculations on logical variables, R will force logical values to become numbers and calculate the results. The range of the mean of a seris of TRUEs and FALSEs is (0,1), indicating the proportion of the two values. However, even factors can be converted to numeric values, the mean of the values shows no significance. Therefore, taking the mean of factors is not allowed and helpless.</p>
 <p>In fact, vectors of characters can be converted to numeric values only when the characters are all numbers. However, converting number characters to numeric values runs the risk of missing information if the original characters have many decimal places.</p>
 </div>
-<div id="step-3.2-convert-dtype-multiplication" class="section level2">
-<h2>STEP 3.2: Convert dtype &amp; Multiplication</h2>
-<pre class="r"><code>#STEP 3.2: Convert dtype &amp; Multiplication
+<div id="step-3.2-convert-data-type-multiplication" class="section level2">
+<h2>STEP 3.2: Convert data type &amp; Multiplication</h2>
+<pre class="r"><code>#STEP 3.2: Convert data type &amp; Multiplication
 result1 =  as.numeric(pull(df_1,vec_logical)) * pull(df_1,random_sample) # convert the logical vector to numeric, and multiply the random sample by the result
 result2 = as.factor(pull(df_1,vec_logical)) * pull(df_1,random_sample) # convert the logical vector to a factor, and multiply the random sample by the result</code></pre>
 <pre><code>## Warning in Ops.factor(as.factor(pull(df_1, vec_logical)), pull(df_1,
