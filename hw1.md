@@ -122,7 +122,7 @@ df_2 <- tibble(
 
 The size of the data is (500 ,5). The mean of x is 0.0288533. The median
 of x is 0.0173867. The standard deviation of x is 1.0174585. The
-proportion of x is 0.28
+proportion of cases for which x + y \> 1 is 0.28
 
 ## Make scatterplots
 

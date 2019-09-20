@@ -80,7 +80,7 @@ df_2 <- tibble(
 )
 
 ```
-The size of the data is (`r nrow(df_2) ` ,`r ncol(df_2)`). The mean of x is `r mean(pull(df_2,x)) `. The median of x is `r median(pull(df_2,x))`. The standard deviation of x is `r sd(pull(df_2,x)) `. The proportion of x is `r length(which(pull(df_2,log_vec)))/length(pull(df_2,log_vec))` 
+The size of the data is (`r nrow(df_2) ` ,`r ncol(df_2)`). The mean of x is `r mean(pull(df_2,x)) `. The median of x is `r median(pull(df_2,x))`. The standard deviation of x is `r sd(pull(df_2,x)) `. The proportion of cases for which x + y > 1 is `r length(which(pull(df_2,log_vec)))/length(pull(df_2,log_vec))` 
 
 ## Make scatterplots
 
