@@ -138,7 +138,7 @@ ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point()+
 ``` r
   # a scatterplot of y vs x; color points using the logical variable
 
-ggsave("colored_by_logical_variables.pdf") #expoert the image
+ggsave("colored_by_logical_variables.pdf") #export the image
 ```
 
     ## Saving 7 x 5 in image

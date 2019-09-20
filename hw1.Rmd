@@ -91,7 +91,7 @@ ggplot(df_2, aes(x = x, y = y, color = log_vec ))+geom_point()+
   theme(plot.title = element_text(hjust = 0.5))
   # a scatterplot of y vs x; color points using the logical variable
 
-ggsave("colored_by_logical_variables.pdf") #expoert the image
+ggsave("colored_by_logical_variables.pdf") #export the image
 
 ggplot(df_2, aes(x = x, y = y, color = num_vec ))+geom_point()+
   labs(x="x",y="y", title = "Scatter Plot Colored by Numeric Variables")+
